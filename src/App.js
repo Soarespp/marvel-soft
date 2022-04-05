@@ -1,25 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionsCharacters from './store/actions/character/index';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Home from './Container/Home/index';
+import DetailCharacter from './Container/DetailCharacter';
+
+class App extends Component {
+  componentDidMount() {
+    console.log('app did mount')
+    this.props.getData()
+  }
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path="/character/:idCharacter" component={DetailCharacter} />
+            <Route exact path="/" component={Home} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    characters: state.dados.characters,
+  };
+};
+
+const mapDispatchToProp = (dispatch) => bindActionCreators(actionsCharacters, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProp
+)(App);
