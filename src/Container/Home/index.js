@@ -8,7 +8,7 @@ import Header from '../../Components/Header/index';
 
 
 const Home = (props) => {
-    const { characters } = props;
+    const { characters, pageCount, getData } = props;
     return (
         <div>
             <Header />
@@ -26,6 +26,7 @@ const Home = (props) => {
                             </Link>
                         </div>
                     ))}
+            <button onClick={() => { getData('', pageCount) }}>Load more</button>
         </div >
     );
 }
@@ -33,6 +34,7 @@ const Home = (props) => {
 function mapStateToProps(state) {
     return {
         characters: state.dados.characters,
+        pageCount: state.dados.pageCount,
     };
 };
 

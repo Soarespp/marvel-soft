@@ -2,11 +2,11 @@ import { GET_DADOS, SET_FILTER, UPDATE_CHAR } from "../../actionType";
 const API_URL = 'https://gateway.marvel.com:443/v1/public/characters';
 const API_KEY = 'af6fe4504130de33d24b21dd68baa994';
 
-export async function getData(dispacth, getState) {
-    console.log('geData action')
+export async function getData(filter, pageCount) {
+    console.log('geData action', filter, pageCount)
 
     // const result = await fetch(`${API_URL}?apikey=${API_KEY}&limit=${10}${queryFilter}`)
-    const result = await fetch(`${API_URL}?apikey=${API_KEY}&limit=${20}`)
+    const result = await fetch(`${API_URL}?apikey=${API_KEY}&limit=${20}&offset=${pageCount}`)
         .then(response => {
             if (!response.ok) throw Error()
             return response

@@ -3,6 +3,7 @@ import { GET_DADOS, SET_FILTER, UPDATE_CHAR } from '../../actionType';
 
 var initialState = {
     filter: "",
+    pageCount: 0,
     characters: [],
 };
 
@@ -11,7 +12,8 @@ export default function (state = initialState, action) {
         case GET_DADOS:
             return {
                 ...state,
-                characters: action.payload
+                pageCount: [...state.characters, ...action.payload].length,
+                characters: [...state.characters, ...action.payload]
             }
         case SET_FILTER:
             return {
@@ -19,7 +21,6 @@ export default function (state = initialState, action) {
                 filter: action.payload
             }
         case UPDATE_CHAR:
-            console.log('action.payload', action.payload)
             return {
                 ...state,
                 characters: [
