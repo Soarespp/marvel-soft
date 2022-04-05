@@ -5,14 +5,14 @@ import { bindActionCreators } from 'redux';
 import * as characterActions from '../../store/actions/character/index';
 
 const Header = (props) => {
-    const { filter } = props;
+    const { filter, getDataFiltered } = props;
 
     return (
         <div >
             <input placeholder="Pesquisa produtos"
                 value={filter}
                 onChange={e => {
-                    props.setFilter(e.target.value)
+                    getDataFiltered(e.target.value)
                 }}
             />
         </div>

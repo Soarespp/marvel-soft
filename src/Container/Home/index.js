@@ -8,7 +8,7 @@ import Header from '../../Components/Header/index';
 
 
 const Home = (props) => {
-    const { characters, pageCount, getData } = props;
+    const { characters, pageCount, getData, getDataFiltered } = props;
     return (
         <div>
             <Header />
@@ -24,9 +24,10 @@ const Home = (props) => {
                             >
                                 <button>Editar Form</button>
                             </Link>
+                            <button onClick={() => getDataFiltered(char.name)}>Filter</button>
                         </div>
                     ))}
-            <button onClick={() => { getData('', pageCount) }}>Load more</button>
+            <button onClick={() => { getData(pageCount) }}>Load more</button>
         </div >
     );
 }
