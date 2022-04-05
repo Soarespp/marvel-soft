@@ -33,12 +33,22 @@ export default function (state = initialState, action) {
                 filter: action.payload
             }
         case UPDATE_CHAR:
+            var lstCharacters = [...state.characters];
+            lstCharacters.forEach((item, idx) => {
+                if (item.id === action.payload.id) {
+                    lstCharacters[idx] = action.payload
+                }
+            });
             return {
                 ...state,
-                characters: [
-                    ...state.characters.filter((char) => char.id !== action.payload.id),
-                    action.payload]
+                characters: lstCharacters
             }
+        // return {
+        //     ...state,
+        //     characters: [
+        //         ...state.characters.filter((char) => char.id !== action.payload.id),
+        //         action.payload]
+        // }
         default:
             return state
     }
