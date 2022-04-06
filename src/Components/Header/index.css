@@ -1,7 +1,13 @@
 .Header {
-    background-color: #EE6055;
-    height: 80px;
+    background-color: #ec4040;
+    height: 105px;
     align-items: center;
     align-content: center;
     text-align: center;
+    padding-bottom: 5px;
+}
+
+.Header .Container {
+    width: 20%;
+    margin: auto;
 }

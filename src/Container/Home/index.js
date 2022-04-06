@@ -5,7 +5,7 @@ import * as actionsCharacters from '../../store/actions/character/index';
 import { Link } from "react-router-dom";
 import './index.css';
 import Header from '../../Components/Header/index';
-import { ImgDefault } from '../../Components/Header/imgComponent/style';
+import { ImgDefault } from '../../Components/imgComponent/style';
 import { CardList } from './style';
 
 
@@ -36,7 +36,9 @@ const Home = (props) => {
                                 </Link>
                             ))}
                 </div>
-                <button onClick={() => { getData(pageCount) }}>Load more</button>
+                <div style={{ width: '80px', margin: 'auto' }}>
+                    <button onClick={() => { getData(pageCount) }}>Load more</button>
+                </div>
             </div>
         </div >
     );

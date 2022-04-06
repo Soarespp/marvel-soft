@@ -5,6 +5,7 @@ import * as actionsCharacters from '../../store/actions/character/index';
 import { useParams } from "react-router-dom";
 import Header from '../../Components/Header/index';
 import './index.css';
+import { ImgDefault } from '../../Components/imgComponent/style';
 
 import { Form, Input, Button, Row, Col, List } from 'antd';
 
@@ -35,11 +36,13 @@ const DetailCharacter = (props) => {
     return (
         <div className='DetailCharacter'>
             <Header seacher={false} />
-            <Form className='formData'>
-                <Col span={8}>
-                    teste
-                </Col>
-                <Col span={12}>
+            <div className='Container-Data'>
+                <div style={{ width: '40%' }}>
+                    {(charLocal.thumbnail) ?
+                        <ImgDefault width='90%' height='100%' src={`${charLocal.thumbnail.path}.${charLocal.thumbnail.extension}`} />
+                        : null}
+                </div>
+                <Form >
                     <Row>
                         <Form.Item label="Name">
                             <Input
@@ -47,12 +50,18 @@ const DetailCharacter = (props) => {
                                 placeholder="Name"
                                 value={charLocal.name}
                                 onChange={({ target: { name, value } }) => setCharLocal((local) => ({ ...local, [name]: value }))}
+                                size="large"
                             />
+                        </Form.Item>
+                    </Row>
+                    <Row>
+                        <Form.Item label="Descrição">
                             <Input
                                 name="description"
                                 placeholder="description"
                                 value={charLocal.description}
                                 onChange={({ target: { name, value } }) => setCharLocal((local) => ({ ...local, [name]: value }))}
+                                size="large"
                             />
                         </Form.Item>
                     </Row>
@@ -65,24 +74,24 @@ const DetailCharacter = (props) => {
                             renderItem={item => <List.Item>{item.name}</List.Item>}
                         />
                     </Row>
-                </Col>
-                <Form.Item>
-                    <Button
-                        name="save"
-                        type="primary"
-                        onClick={() => handleSubmit(charLocal)}
-                    >
-                        Save
-                    </Button>
-                    <Button
-                        name="cancel"
-                        type="outline"
-                        onClick={() => history.push('/')}
-                    >
-                        Cancel
-                    </Button>
-                </Form.Item>
-            </Form>
+                    <Form.Item>
+                        <Button
+                            name="save"
+                            type="primary"
+                            onClick={() => handleSubmit(charLocal)}
+                        >
+                            Save
+                        </Button>
+                        <Button
+                            name="cancel"
+                            type="outline"
+                            onClick={() => history.push('/')}
+                        >
+                            Cancel
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </div>
         </div>
     );
 }

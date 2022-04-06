@@ -1,7 +1,10 @@
 .DetailCharacter {}
 
-.formData {
+.DetailCharacter .Container-Data {
     width: 50%;
     margin: auto;
-    background-color: blue;
+    border: 3px groove rgb(191, 6, 3);
+    border-radius: 3px;
+    display: flex;
+    min-height: 500px;
 }
