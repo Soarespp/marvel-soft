@@ -7,7 +7,7 @@ import Header from '../../Components/Header/index';
 import './index.css';
 import { ImgDefault } from '../../Components/imgComponent/style';
 
-import { Form, Input, Button, Row, Col, List } from 'antd';
+import { Form, Input, Button, Row, List } from 'antd';
 
 const initChar = {
     id: 0,

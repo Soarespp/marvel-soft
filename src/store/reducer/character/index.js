@@ -11,9 +11,6 @@ var initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case GET_DADOS:
-            if (state.filter) {
-                state.characters = state.bkpCharactersFilter
-            }
             return {
                 ...state,
                 pageCount: [...state.characters, ...action.payload].length,
@@ -43,12 +40,6 @@ export default function (state = initialState, action) {
                 ...state,
                 characters: lstCharacters
             }
-        // return {
-        //     ...state,
-        //     characters: [
-        //         ...state.characters.filter((char) => char.id !== action.payload.id),
-        //         action.payload]
-        // }
         default:
             return state
     }

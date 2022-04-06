@@ -11,7 +11,7 @@ const Header = (props) => {
     return (
         <div className='Header'>
             <div className='Container'>
-                <img src={imgLogo} style={{ height: '80px', width: '100%' }} />
+                <img src={imgLogo} alt={imgLogo} style={{ height: '80px', width: '100%' }} />
                 {seacher ? <input placeholder="Pesquisa produtos"
                     value={filter}
                     onChange={e => {
