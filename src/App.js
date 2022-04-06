@@ -14,7 +14,6 @@ import DetailCharacter from './Container/DetailCharacter';
 
 class App extends Component {
   componentDidMount() {
-    console.log('app did mount')
     this.props.getData()
   }
   render() {

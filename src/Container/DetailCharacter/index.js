@@ -1,49 +1,95 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import * as actionsCharacters from '../../store/actions/character/index';
-import { Form } from '@unform/web';
-// import { Scope } from '@unform/core';
-import { Link, useParams } from "react-router-dom";
-import Input from './Components/Input';
+import { useParams } from "react-router-dom";
+import Header from '../../Components/Header/index';
+import './index.css';
+import { ImgDefault } from '../../Components/imgComponent/style';
+
+import { Form, Input, Button, Row, Col, List } from 'antd';
+
+const initChar = {
+    id: 0,
+    name: '',
+    series: { items: [] }
+}
 
 const DetailCharacter = (props) => {
-    const { characters, changeCharacter } = props;
-    const formRef = useRef(null);
+    const { characters, changeCharacter, history } = props;
+    const [charLocal, setCharLocal] = useState(initChar);
     var params = useParams();
 
     useEffect(() => {
-        console.log('parseInt(params.idCharacter', parseInt(params.idCharacter))
         if (parseInt(params.idCharacter) !== -1) {
-            const characterEdit = characters.find(comp => comp.id === parseInt(params.idCharacter)) || {};
-            console.log('characterEdit', characterEdit)
-            formRef.current.setData(characterEdit)
+            const characterEdit = characters.find(comp => comp.id === parseInt(params.idCharacter)) || initChar;
+            setCharLocal(characterEdit);
         }
     }, [characters, params.idCharacter])
 
-    async function handleSubmit(data, { reset }) {
-        //Ajusta o form completo para passar os dados completos
-        const CharLocal = characters.find(comp => comp.id === parseInt(data.id)) || {};
-        CharLocal.name = data.name
-        changeCharacter(CharLocal)
+    function handleSubmit(data) {
+        changeCharacter(data)
         alert('salvo com sucesso')
+        history.push('/')
     }
 
     return (
-        <div className='CadCompromissoForm'>
-            <div className='body'>
-                <Form onSubmit={handleSubmit} ref={formRef}>
-                    id:<Input name="id" />
-                    comics:<Input name="comics.collectionURI" />
-                    Descrição:<Input name="description" />
-                    Eventos:<Input name="events.collectionURI" />
-                    Series:<Input name="series.collectionURI" />
-                    Stories:<Input name="stories.available" />
-                    IMG:<Input name="thumbnail.path" />
-                    <button type='submit'> Salvar</button>
-                    <Link to={`/`}>
-                        <button type='cancel'> Voltar</button>
-                    </Link>
+        <div className='DetailCharacter'>
+            <Header seacher={false} />
+            <div className='Container-Data'>
+                <div style={{ width: '40%' }}>
+                    {(charLocal.thumbnail) ?
+                        <ImgDefault width='90%' height='100%' src={`${charLocal.thumbnail.path}.${charLocal.thumbnail.extension}`} />
+                        : null}
+                </div>
+                <Form >
+                    <Row>
+                        <Form.Item label="Name">
+                            <Input
+                                name="name"
+                                placeholder="Name"
+                                value={charLocal.name}
+                                onChange={({ target: { name, value } }) => setCharLocal((local) => ({ ...local, [name]: value }))}
+                                size="large"
+                            />
+                        </Form.Item>
+                    </Row>
+                    <Row>
+                        <Form.Item label="Descrição">
+                            <Input
+                                name="description"
+                                placeholder="description"
+                                value={charLocal.description}
+                                onChange={({ target: { name, value } }) => setCharLocal((local) => ({ ...local, [name]: value }))}
+                                size="large"
+                            />
+                        </Form.Item>
+                    </Row>
+                    <Row>
+                        <List
+                            size="small"
+                            header={<div>Series</div>}
+                            bordered
+                            dataSource={charLocal.series.items}
+                            renderItem={item => <List.Item>{item.name}</List.Item>}
+                        />
+                    </Row>
+                    <Form.Item>
+                        <Button
+                            name="save"
+                            type="primary"
+                            onClick={() => handleSubmit(charLocal)}
+                        >
+                            Save
+                        </Button>
+                        <Button
+                            name="cancel"
+                            type="outline"
+                            onClick={() => history.push('/')}
+                        >
+                            Cancel
+                        </Button>
+                    </Form.Item>
                 </Form>
             </div>
         </div>
