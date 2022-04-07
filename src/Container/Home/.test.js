@@ -1,4 +1,5 @@
-import React, { render } from "@testing-library/react";
+import React from 'react'
+import { render } from "@testing-library/react";
 import Home from "./index";
 import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
@@ -11,7 +12,8 @@ describe("<Home />", () => {
 
     beforeEach(() => {
         props = {
-            characters: [],
+            characters: [{ id: 1, name: 'teste 1' },
+            { id: 2, name: 'teste 2' }],
         }
 
     })
@@ -37,5 +39,6 @@ describe("<Home />", () => {
 
     test('render component', () => {
         expect(render(<Provider store={store}><Home {...props} /></Provider>));
+        // expect(createRoot(<Provider store={store}><Home {...props} /></Provider>));
     })
 });

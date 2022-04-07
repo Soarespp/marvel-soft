@@ -37,9 +37,9 @@ const DetailCharacter = (props) => {
         <div className='DetailCharacter'>
             <Header seacher={false} />
             <div className='Container-Data'>
-                <div style={{ width: '40%' }}>
+                <div style={{ backgroundColor: 'red', width: '100%', height: '100%', minWidth: '200px', minHeight: '300px' }}>
                     {(charLocal.thumbnail) ?
-                        <ImgDefault width='90%' height='100%' src={`${charLocal.thumbnail.path}.${charLocal.thumbnail.extension}`} />
+                        <ImgDefault width='100%' height='100%' src={`${charLocal.thumbnail.path}.${charLocal.thumbnail.extension}`} />
                         : null}
                 </div>
                 <Form >
@@ -47,6 +47,7 @@ const DetailCharacter = (props) => {
                         <Form.Item label="Name">
                             <Input
                                 name="name"
+                                testID='editName'
                                 placeholder="Name"
                                 value={charLocal.name}
                                 onChange={({ target: { name, value } }) => setCharLocal((local) => ({ ...local, [name]: value }))}
@@ -85,6 +86,7 @@ const DetailCharacter = (props) => {
                         <Button
                             name="cancel"
                             type="outline"
+                            testID="button"
                             onClick={() => history.push('/')}
                         >
                             Cancel

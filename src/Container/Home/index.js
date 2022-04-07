@@ -31,7 +31,7 @@ const Home = (props) => {
                                 >
                                     <CardList>
                                         <p>{char.name}</p>
-                                        <ImgDefault width='150px' height='150px' src={`${char.thumbnail.path}.${char.thumbnail.extension}`} />
+                                        <ImgDefault width='90%' height='200px' src={`${char.thumbnail.path}.${char.thumbnail.extension}`} />
                                     </CardList>
                                 </Link>
                             ))}

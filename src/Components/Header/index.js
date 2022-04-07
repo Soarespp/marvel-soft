@@ -12,8 +12,9 @@ const Header = (props) => {
         <div className='Header'>
             <div className='Container'>
                 <img src={imgLogo} alt={imgLogo} style={{ height: '80px', width: '100%' }} />
-                {seacher ? <input placeholder="Pesquisa produtos"
+                {seacher ? <input placeholder="Search charaters"
                     value={filter}
+                    style={{ width: '100%' }}
                     onChange={e => {
                         getDataFiltered(e.target.value)
                     }}
