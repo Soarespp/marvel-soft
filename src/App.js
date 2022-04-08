@@ -16,6 +16,7 @@ class App extends Component {
   componentDidMount() {
     this.props.getData()
   }
+
   render() {
     return (
       <div className="App">

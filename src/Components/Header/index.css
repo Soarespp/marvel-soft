@@ -8,6 +8,7 @@
 }
 
 .Header .Container {
-    width: 20%;
+    width: 90%;
     margin: auto;
+    max-width: 500px;
 }

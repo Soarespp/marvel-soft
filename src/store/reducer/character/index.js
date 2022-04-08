@@ -4,6 +4,7 @@ import { GET_DADOS, SET_FILTER, UPDATE_CHAR, GET_DADOS_FILTER } from '../../acti
 var initialState = {
     filter: false,
     pageCount: 0,
+    loading: true,
     bkpCharactersFilter: [],
     characters: [],
 };
@@ -11,11 +12,9 @@ var initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case GET_DADOS:
-            if (state.filter) {
-                state.characters = state.bkpCharactersFilter
-            }
             return {
                 ...state,
+                loading: false,
                 pageCount: [...state.characters, ...action.payload].length,
                 characters: [...state.characters, ...action.payload]
             }
@@ -25,6 +24,7 @@ export default function (state = initialState, action) {
                 bkpCharactersFilter: state.characters,
                 pageCount: action.payload.length,
                 filter: true,
+                loading: false,
                 characters: action.payload
             }
         case SET_FILTER:
@@ -43,12 +43,6 @@ export default function (state = initialState, action) {
                 ...state,
                 characters: lstCharacters
             }
-        // return {
-        //     ...state,
-        //     characters: [
-        //         ...state.characters.filter((char) => char.id !== action.payload.id),
-        //         action.payload]
-        // }
         default:
             return state
     }

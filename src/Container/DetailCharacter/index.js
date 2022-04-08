@@ -7,7 +7,7 @@ import Header from '../../Components/Header/index';
 import './index.css';
 import { ImgDefault } from '../../Components/imgComponent/style';
 
-import { Form, Input, Button, Row, Col, List } from 'antd';
+import { Form, Input, Button, Row, List } from 'antd';
 
 const initChar = {
     id: 0,
@@ -15,8 +15,10 @@ const initChar = {
     series: { items: [] }
 }
 
-const DetailCharacter = (props) => {
-    const { characters, changeCharacter, history } = props;
+const DetailCharacter = ({ characters, changeCharacter, history }) => {
+    // const { characters, changeCharacter, history } = props;
+    console.log('substituir fuction por =>')
+    console.log('retirar os styles locais')
     const [charLocal, setCharLocal] = useState(initChar);
     var params = useParams();
 
@@ -37,9 +39,9 @@ const DetailCharacter = (props) => {
         <div className='DetailCharacter'>
             <Header seacher={false} />
             <div className='Container-Data'>
-                <div style={{ width: '40%' }}>
+                <div style={{ backgroundColor: 'red', width: '100%', height: '100%', minWidth: '200px', minHeight: '300px' }}>
                     {(charLocal.thumbnail) ?
-                        <ImgDefault width='90%' height='100%' src={`${charLocal.thumbnail.path}.${charLocal.thumbnail.extension}`} />
+                        <ImgDefault width='100%' height='100%' src={`${charLocal.thumbnail.path}.${charLocal.thumbnail.extension}`} />
                         : null}
                 </div>
                 <Form >
@@ -85,6 +87,7 @@ const DetailCharacter = (props) => {
                         <Button
                             name="cancel"
                             type="outline"
+                            testID="button"
                             onClick={() => history.push('/')}
                         >
                             Cancel
