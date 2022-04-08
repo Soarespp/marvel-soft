@@ -5,6 +5,7 @@ describe("reducerLibrary", () => {
     const state = {
         filter: false,
         pageCount: 0,
+        loading: true,
         bkpCharactersFilter: [],
         characters: [],
     };
@@ -30,6 +31,7 @@ describe("reducerLibrary", () => {
             ...state,
             characters: [{ name: 'teste' }],
             filter: true,
+            loading: false,
             pageCount: 1
         });
     });
@@ -41,6 +43,7 @@ describe("reducerLibrary", () => {
             ...state,
             characters: [{ name: 'teste' }],
             filter: false,
+            loading: false,
             pageCount: 1
         });
     });

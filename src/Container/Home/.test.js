@@ -4,27 +4,19 @@ import Home from "./index";
 import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import MatchMediaMock from 'jest-matchmedia-mock';
 
 describe("<Home />", () => {
     let props;
-    let matchMedia;
 
     beforeEach(() => {
         props = {
             characters: [{ id: 1, name: 'teste 1' },
             { id: 2, name: 'teste 2' }],
+            loading: true,
         }
 
     })
 
-    beforeAll(() => {
-        matchMedia = new MatchMediaMock();
-    });
-
-    afterEach(() => {
-        matchMedia.clear();
-    });
 
     const mockStore = configureMockStore([thunk])
 
@@ -38,7 +30,6 @@ describe("<Home />", () => {
     });
 
     test('render component', () => {
-        expect(render(<Provider store={store}><Home {...props} /></Provider>));
-        // expect(createRoot(<Provider store={store}><Home {...props} /></Provider>));
+        expect(render(<Provider store={store}><Home props={props} /></Provider>));
     })
 });

@@ -9,3 +9,14 @@ export const CardList = styled.div`
   align-content: center;
   display: inlinne
 `;
+
+export const Loading = styled.div`
+  width: 90%; 
+  height: 200px; 
+  margin: auto;
+  max-Width: 1000px;
+  align-Items: center; 
+  text-Align: center;
+  justify-Content: center; 
+  align-Content: center;
+`;

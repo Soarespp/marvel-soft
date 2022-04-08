@@ -1,15 +1,13 @@
-import React, { render, fireEvent } from "@testing-library/react";
+import React, { render } from "@testing-library/react";
+import { createMemoryHistory } from 'history'
 import DetailCharacter from "./index";
 import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
-import sinon from 'sinon';
 import { Provider } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 
-import Enzyme from 'enzyme';
-import { mount } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { shallow } from 'enzyme';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -21,9 +19,9 @@ describe("<DetailCharacter />", () => {
             characters: [],
             idCharacter: 1,
         }
-        // jest.mock('react-router-dom', () => ({
-        //     useParams: jest.fn().mockReturnValue({ idCharacter: 1 }),
-        // }));
+        jest.mock('react-router-dom', () => ({
+            useParams: jest.fn().mockReturnValue({ idCharacter: 1 }),
+        }));
     })
 
     const store = mockStore({
@@ -45,12 +43,29 @@ describe("<DetailCharacter />", () => {
     });
 
     // test('render component', async () => {
-    //     jest.mock("react-router-dom", () => ({
-    //         ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
-    //         useParams: () => ({
-    //             idCharacter: -1
-    //         })
-    //     }));
-    //     expect(render(<Provider store={store}><DetailCharacter {...props} /></Provider>));
+    // jest.mock("react-router-dom", () => ({
+    //     ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
+    //     useParams: () => ({
+    //         idCharacter: -1
+    //     })
+    // }));
+
+    // const history = createMemoryHistory()
+    // const route = '/character/:idCharacter'
+    // history.push(route)
+    // expect(render(<Provider store={store}>
+    //     <Router history={history}>
+    //         <DetailCharacter {...props} />
+    //     </Router>
+    // </Provider >))
+    // render(
+    //     <Provider store={store}>
+    //         <Router history={history}>
+    //             <DetailCharacter {...props} />
+    //         </Router>
+    //     </Provider>,
+    // )
+
+    // expect(render(<Provider store={store}><DetailCharacter {...props} /></Provider>));
     // })
 });

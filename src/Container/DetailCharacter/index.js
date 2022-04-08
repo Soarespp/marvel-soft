@@ -15,8 +15,10 @@ const initChar = {
     series: { items: [] }
 }
 
-const DetailCharacter = (props) => {
-    const { characters, changeCharacter, history } = props;
+const DetailCharacter = ({ characters, changeCharacter, history }) => {
+    // const { characters, changeCharacter, history } = props;
+    console.log('substituir fuction por =>')
+    console.log('retirar os styles locais')
     const [charLocal, setCharLocal] = useState(initChar);
     var params = useParams();
 
@@ -47,7 +49,6 @@ const DetailCharacter = (props) => {
                         <Form.Item label="Name">
                             <Input
                                 name="name"
-                                testID='editName'
                                 placeholder="Name"
                                 value={charLocal.name}
                                 onChange={({ target: { name, value } }) => setCharLocal((local) => ({ ...local, [name]: value }))}
