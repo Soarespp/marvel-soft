@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DetailCharacter /> render test 1`] = `
+<Context.Provider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Object {
+        "addNestedSub": [Function],
+        "getListeners": [Function],
+        "handleChangeWrapper": [Function],
+        "isSubscribed": [Function],
+        "notifyNestedSubs": [Function],
+        "trySubscribe": [Function],
+        "tryUnsubscribe": [Function],
+      },
+    }
+  }
+>
+  <Memo(Connect(DetailCharacter))
+    characters={
+      Array [
+        Object {
+          "id": 1,
+          "name": "teste",
+        },
+      ]
+    }
+    idCharacter={1}
+  />
+</Context.Provider>
+`;
+
+exports[`<DetailCharacter /> should render cases container 1`] = `ShallowWrapper {}`;

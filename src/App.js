@@ -31,7 +31,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     characters: state.dados.characters,
   };

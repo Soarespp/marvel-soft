@@ -1,10 +1,6 @@
-import React, { render } from "@testing-library/react";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import { enableFetchMocks } from 'jest-fetch-mock';
-// import fetchMock from 'fetch-mock'
-
-import { GET_DADOS, SET_FILTER, UPDATE_CHAR } from "../../actionType";
+import { SET_FILTER, UPDATE_CHAR } from "../../actionType";
 // Actions
 import * as actions from "./index";
 
@@ -28,7 +24,6 @@ const response = {
 
 describe("Actions test", () => {
     let store;
-    enableFetchMocks();
     beforeEach(() => {
         store = mockStore({
             dados: {
@@ -63,15 +58,15 @@ describe("Actions test", () => {
         });
     });
 
-    // test("Action GET_DATA", async () => {
-    //     var fetchMock = require('fetch-mock');
-    //     fetchMock.mock(URL, [{ id: 1, name: 'teste name' }])
+    test("Action getData", () => {
+        const action = actions.getData(0);
 
-    //     const res = await actions.getData(0)
-    //     expect(res).toEqual({
-    //         type: GET_DADOS,
-    //         payload: [{ id: 1, name: 'teste name' }],
-    //     });
-    //     fetchMock.restore();
-    // });
+        expect(action).toEqual(new Promise(() => { }));
+    });
+
+    test("Action getDataFiltered", () => {
+        const action = actions.getDataFiltered('new');
+
+        expect(action).toEqual(new Promise(() => { }));
+    });
 });
