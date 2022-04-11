@@ -7,7 +7,7 @@ const reducers = combineReducers({
     dados: charactersReducer
 })
 
-function storeConfig() {
+const storeConfig = () => {
     return applyMiddleware(promise)(createStore)(reducers)
 }
 

@@ -9,6 +9,7 @@ export async function getData(pageCount) {
     }
 }
 
+
 export async function getDataFiltered(filter) {
     const setFilter = filter ? `&nameStartsWith=${filter}` : ''
     const result = connect(setFilter)
